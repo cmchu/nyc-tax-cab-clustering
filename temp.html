@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+                <html>
+                  <head>
+                    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+                    <meta charset="utf-8">
+                    <title>Simple Polylines</title>
+                    <style>
+                      /* Always set the map height explicitly to define the size of the div
+                       * element that contains the map. */
+                      #map {
+                        height: 100%;
+                      }
+                      /* Optional: Makes the sample page fill the window. */
+                      html, body {
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                    <div id="map"></div>
+                    <script>
+                      function initMap() {
+                        var myLatLng = {lat:40.830186, lng:-73.947787};var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 13,
+                          center: myLatLng
+                        });
+
+                        var BoundaryCoordinates = [{lat: 40.829933, lng: -73.948013},
+{lat: 40.829987, lng: -73.948021},
+{lat: 40.830570, lng: -73.947678},
+{lat: 40.830292, lng: -73.947487},
+{lat: 40.830105, lng: -73.947655},
+{lat: 40.829933, lng: -73.948013}];
+                        var Boundary = new google.maps.Polyline({
+                          path: BoundaryCoordinates,
+                          geodesic: true,
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 1.0,
+                          strokeWeight: 2
+                        });
+
+                        var marker = new google.maps.Marker({
+                              position: myLatLng,
+                              map: map,
+                              title: 'Top Origin Points of Trips',label: 'Q6: 5th'});var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < BoundaryCoordinates.length; i++) {
+            bounds.extend(BoundaryCoordinates[i]);
+        }Boundary.setMap(map);
+                        map.fitBounds(bounds);
+                      }
+                    </script>
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEQOGJSL_eVuwali6jKk1k1gZxtk-l68k&callback=initMap">
+                    </script>
+                  </body>
+                </html>
